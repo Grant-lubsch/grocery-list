@@ -49,6 +49,22 @@ function showAction(element, text, value) {
   }
 }
 
+// create item
+function createItem(value) {
+  let parent = document.createElement('div');
+      parents.classList.add('grocery-item');
+
+  // let title = document.createElement('h4');
+  //     title.classList.add('grocery-item_title')
+
+  parent.innerHtml = `<h4 class="grocery-item__title">${value}</h4>
+    <a href="#" class="grocery-item__link">
+        <i class="far fa-trash-alt"></i>
+    </a>`
+
+    list.appendChild(parent);
+}
+
 //update storage
 function updateStorage(value){
     let groceryList;
@@ -57,4 +73,16 @@ function updateStorage(value){
 
     groceryList.push(value);
     localStorage.setItem('groceryList', JSON.stringify(groceryList));
+}
+
+// display items in local localStorage
+function displayStorage(){
+    let exists = localStorage.getItem('groceryList');
+
+    if(exists){
+        let storageItems = JSON.parse(localStorage.getItem('groceryList'));
+        storageItems.forEach(function(element){
+            createItem(element);
+        })
+    }
 }
