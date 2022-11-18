@@ -86,3 +86,20 @@ function displayStorage(){
         })
     }
 }
+
+//remove all items
+function removeItems(){
+    //delete from local storage
+    localStorage.removeItem('groceryList');
+    let items = document.querySelectorAll('.grocery-item');
+
+    if(items.length > 0){
+        //remove each item from the list
+        showAction(displayItemsAction, 'All items deleted', false);
+        items.forEach(function(element){
+            list.removeChild(element);
+        })
+    } else {
+        showAction(displayItemsAction, 'No more items to delete', false);
+    }
+}
